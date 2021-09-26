@@ -18,6 +18,6 @@ class Product extends Model
     }
 
     protected $fillable =[
-        'title','description','price','brand_id','category_id'
+        'title','description','price','brand_id','category_id','image'
     ];
 }

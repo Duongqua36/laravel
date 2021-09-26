@@ -17,19 +17,23 @@ class ProductController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
         $products = Product::paginate($paginate);
-        return view('backend.list', compact('products','brands','categories'));
+        return view('backend.list', compact('products', 'brands', 'categories'));
     }
 
     public function create()
     {
         $brands = Brand::all();
         $categories = Category::all();
-        return view('backend.add', compact('brands','categories'));
+        return view('backend.add', compact('brands', 'categories'));
     }
 
     public function store(Request $request)
     {
-        Product::create($request->all());
+        $imageName = time() . '.' . $request->image->getClientOriginalExtension();
+        $request->image->move(public_path('/image'), $imageName);
+        $data = $request->all();
+        $data['image'] = $imageName;
+        Product::create($data);
         return redirect()->route('product.list');
     }
 
@@ -44,7 +48,7 @@ class ProductController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
         $product = Product::find($id);
-        return view('backend.edit', compact('product', 'brands','categories'));
+        return view('backend.edit', compact('product', 'brands', 'categories'));
     }
 
     public function update($id, Request $request)
@@ -52,6 +56,12 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->update($request->all());
         return redirect()->route('product.list');
+    }
+
+    public function showHome()
+    {
+        $products = Product::all();
+        return view('fontend.home', compact('products'));
     }
 
 
@@ -62,13 +72,13 @@ class ProductController extends Controller
         return view('backend.list', compact('products'));
     }
 
-    public function deleteAll(Request $request,$paginate=6)
+    public function deleteAll(Request $request, $paginate = 6)
     {
         $ids = $request->ids;
         DB::table("products")->whereIn('id', explode(",", $ids))->delete();
     }
 
-    public function filter(Request $request,$paginate=6)
+    public function filter(Request $request, $paginate = 6)
     {
 
         $brands = Brand::all();
@@ -76,11 +86,11 @@ class ProductController extends Controller
         if ($request->id) {
             $p->where('id', $request->id);
         }
-        if ($request->title){
-            $p->where('title','LIKE','%'.$request->title.'%');
+        if ($request->title) {
+            $p->where('title', 'LIKE', '%' . $request->title . '%');
         }
-        if ($request->brand_id && is_numeric($request->brand_id)){
-            $p->where('brand_id',$request->brand_id);
+        if ($request->brand_id && is_numeric($request->brand_id)) {
+            $p->where('brand_id', $request->brand_id);
         }
         if ($request->price_from && is_numeric($request->price_from)) {
             $p->where('price', '>=', $request->price_from);
@@ -90,8 +100,20 @@ class ProductController extends Controller
         }
         $products = $p->paginate($paginate);
         $old_data = $request->all();
-        return view('backend.list', compact('products', 'brands', 'old_data','paginate'));
+        return view('backend.list', compact('products', 'brands', 'old_data', 'paginate'));
     }
 
 
+    public function searchProduct(Request $request)
+    {
+        $search = $request->all()['keyword'];
+        $products = Product::where('title', 'LIKE', '%' . $search . '%')->get();
+        return view('fontend.home', compact('products'));
+    }
+
+    public function productDetail($id)
+    {
+        $products = Product::find($id);
+        return view('fontend.detail', compact('products'));
+    }
 }

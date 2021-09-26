@@ -7,15 +7,16 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
     public function showCategory()
     {
-        $categories = Category::all();
+        $categories = Category::with('childrens')->orderBy('sort','DESC')->get();
         return view('backend.category.list', compact('categories'));
     }
 
     public function addCategory()
     {
-        $categories = Category::all();
+        $categories = Category::with('childrens')->get();
         return view('backend.category.addCategory', compact('categories'));
     }
 
@@ -38,5 +39,8 @@ class CategoryController extends Controller
         return view('backend.category.edit',compact('categories'));
     }
 
+    public function saveList(Request $list){
+        $this->recursive($list->all()['list']);
+    }
 
 }

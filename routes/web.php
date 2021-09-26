@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [AuthController::class, 'showFormLogin'])->name('auth.showFormLogin');
+Route::get('/',[ProductController::class,'showHome'])->name('home');
+Route::get('/login', [AuthController::class, 'showFormLogin'])->name('auth.showFormLogin');
 Route::post('/login', [AuthController::class, 'login'])->name('submitLogin');
 
 Route::get('/home',function (){
@@ -31,6 +31,8 @@ Route::post('{id}/update',[ProductController::class,'update'])->name('product.up
 Route::get('/search',[ProductController::class,'search'])->name('product.search');
 Route::delete('/deleteAll',[ProductController::class,'deleteAll'])->name('product.deleteAll');
 Route::get('/searchAll',[ProductController::class,'filter'])->name('product.filter');
+Route::get('/searchProduct',[ProductController::class,'searchProduct'])->name('product.search2');
+Route::get('{id}/detail',[ProductController::class,'productDetail'])->name('product.detail');
 
 // category
 Route::get('/category',[CategoryController::class,'showCategory'])->name('category.list');
@@ -38,6 +40,7 @@ Route::get('/addCategory',[CategoryController::class,'addCategory'])->name('cate
 Route::post('/addCategory',[CategoryController::class,'store'])->name('category.store');
 Route::get('{id}/deleteCate',[CategoryController::class,'destroyCate'])->name('category.destroy');
 Route::get('{id}/editCate',[CategoryController::class,'editCate'])->name('category.edit');
+Route::post('/update-list',[CategoryController::class,'saveList'])->name('category.saveList');
 
 
 

@@ -24,7 +24,7 @@ class AuthController extends Controller
             session()->flash('backend error',' Đăng nhập thất bại!');
             return redirect()->route('auth.showFormLogin');
         }
-        return redirect()->route('layout.index');
+        return redirect()->route('layout.dashboard');
     }
 
 

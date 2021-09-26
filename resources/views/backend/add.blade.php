@@ -42,6 +42,10 @@
             @endforeach
         </select>
     </div>
+    <div class="col-6">
+        <label for="image" class="form-label">Ảnh</label>
+        <input type="file" class="form-control" name="image" id="image-add">
+    </div>
     <div class="col-12">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="gridCheck">

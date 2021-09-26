@@ -16,6 +16,8 @@ class Category extends Model
     }
 
     function childrens(){
-        return $this->hasMany(Category::class,'parent_id','id');
+        return $this->hasMany(Category::class,'parent_id','id')->orderBy('sort','ASC');
     }
+
+
 }
