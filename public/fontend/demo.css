@@ -1,0 +1,25 @@
+body{
+    font-family: Arial;
+    font-size: 13px;
+    color: #2a96a5;
+}
+#header{
+    background: #2a96a5;
+}
+#search{
+    padding: 15px;
+}
+#search input{
+    width: 280px;
+    border-radius: 3px 0 0 3px;
+    height: 30px;
+    font-size: 13px;
+}
+#search button{
+    height: 30px;
+    border-radius:0 3px 3px 0;
+    width: 80px;
+    color: #89e2c2;
+    background: #be2617;
+    font-size: 13px;
+}
