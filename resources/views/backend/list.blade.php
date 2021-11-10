@@ -1,162 +1,17 @@
 @extends('layout.index')
 @section('title', 'product')
 @section('content')
-<!DOCTYPE html>
+
+    <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Bootstrap Table with Add and Delete Row Feature</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <style>
-        body {
-            color: #404E67;
-            background: #F5F7FA;
-            font-family: 'Open Sans', sans-serif;
-        }
-        .table-wrapper {
-            width: 1000px;
-            margin: 30px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 1px 1px rgba(0,0,0,.05);
-        }
-        .table-title {
-            padding-bottom: 10px;
-            margin: 0 0 10px;
-        }
-        .table-title h2 {
-            margin: 6px 0 0;
-            font-size: 22px;
-        }
-        .table-title .add-new {
-            float: right;
-            height: 30px;
-            font-weight: bold;
-            font-size: 12px;
-            text-shadow: none;
-            min-width: 100px;
-            border-radius: 50px;
-            line-height: 13px;
-        }
-        .table-title .add-new i {
-            margin-right: 4px;
-        }
-        table.table {
-            table-layout: fixed;
-        }
-        table.table tr th, table.table tr td {
-            border-color: #e9e9e9;
-        }
-        table.table th i {
-            font-size: 13px;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-        table.table th:last-child {
-            width: 100px;
-        }
-        table.table td a {
-            cursor: pointer;
-            display: inline-block;
-            margin: 0 5px;
-            min-width: 24px;
-        }
-        table.table td a.add {
-            color: #27C46B;
-        }
-        table.table td a.edit {
-            color: #FFC107;
-        }
-        table.table td a.delete {
-            color: #E34724;
-        }
-        table.table td i {
-            font-size: 19px;
-        }
-        table.table td a.add i {
-            font-size: 24px;
-            margin-right: -1px;
-            position: relative;
-            top: 3px;
-        }
-        table.table .form-control {
-            height: 32px;
-            line-height: 32px;
-            box-shadow: none;
-            border-radius: 2px;
-        }
-        table.table .form-control.error {
-            border-color: #f50000;
-        }
-        table.table td .add {
-            display: none;
-        }
-    </style>
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-            var actions = $("table td:last-child").html();
-            // Append table with add row form on add new button click
-            $(".add-new").click(function(){
-                $(this).attr("disabled", "disabled");
-                var index = $("table tbody tr:last-child").index();
-                var row = '<tr>' +
-                    '<td><input type="checkbox"  name="name"></td>' +
-                    '<td><input type="text" class="form-control" name="title" id="title"></td>' +
-                    '<td><input type="text" class="form-control" name="description" id="description"></td>' +
-                    '<td><input type="number" class="form-control" name="price" id="price"></td>' +
-                    '<td><input type="number" class="form-control" name="brand" id="brand"></td>' +
-                    '<td><input type="number" class="form-control" name="category_id" id="category_id"></td>' +
-                    '<td><input type="file" class="form-control" name="image" id="image"></td>' +
-                    '<td>' + actions + '</td>' +
-                    '</tr>';
-                $("table").append(row);
-                $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-            // Add row on add button click
-            $(document).on("click", ".add", function(){
-                var empty = false;
-                var input = $(this).parents("tr").find('input[type="text"]');
-                input.each(function(){
-                    if(!$(this).val()){
-                        $(this).addClass("error");
-                        empty = true;
-                    } else{
-                        $(this).removeClass("error");
-                    }
-                });
-                $(this).parents("tr").find(".error").first().focus();
-                if(!empty){
-                    input.each(function(){
-                        $(this).parent("td").html($(this).val());
-                    });
-                    $(this).parents("tr").find(".add, .edit").toggle();
-                    $(".add-new").removeAttr("disabled");
-                }
-            });
-            // Edit row on edit button click
-            $(document).on("click", ".edit", function(){
-                $(this).parents("tr").find("td:not(:last-child)").each(function(){
-                    $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
-                });
-                $(this).parents("tr").find(".add, .edit").toggle();
-                $(".add-new").attr("disabled", "disabled");
-            });
-            // Delete row on delete button click
-            $(document).on("click", ".delete", function(){
-                $(this).parents("tr").remove();
-                $(".add-new").removeAttr("disabled");
-            });
-        });
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <p>Tất cả sản phẩm</p>
@@ -255,36 +110,32 @@
         </div>
     </div>
 
-    <!-- product -->
-<div class="container-lg">
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</button>
-                    </div>
-                </div>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th><input type="checkbox" id="master"></th>
-                    <th>Tiêu đề</th>
-                    <th>Mô tả</th>
-                    <th>Giá sản phẩm</th>
-                    <th>Thương hiệu</th>
-                    <th>Thể loại</th>
-                    <th>Ảnh</th>
-                    <th>Thao tác</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($products as $key => $product)
+
+
+    <div class="container">
+        <div class="col-12"><h2></h2></div>
+        <a href="{{route('product.create')}}" class="btn btn-success mb-2"><i class="fas fa-plus-circle"></i></a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><input type="checkbox" id="master"></th>
+                <th>STT</th>
+                <th>Tiêu đề</th>
+                <th>Mô tả</th>
+                <th>Giá sản phẩm</th>
+                <th>Thương hiệu</th>
+                <th>Thể loại</th>
+                <th>Ảnh</th>
+                <th>Thao tác</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($products as $key => $product)
                 <tr>
                     <th><input type="checkbox" class="delete" data-id="{{$product->id}}"></th>
+                    <th scope="row">{{ ++$key }}</th>
                     <td>{{ $product->title }}</td>
-                    <td>{{ $product->description }}</td>
+                    <td>{!! $product->description !!}</td>
                     <td>{{ $product->price }}</td>
                     <td>
                         @if($product->brand)
@@ -300,21 +151,91 @@
                             <p> Chưa phân loại category</p>
                         @endif
                     </td>
-                    <td><img src="{{asset('/image/'.$product->image)}}" width="40" height="40"></td>
+                    <td><img src="{{$product->image}}" width="40" height="40"></td>
                     <td>
-                        <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                        <a href="{{route('product.destroy',$product->id)}}" class="btn btn-outline-danger"
+                           onclick="return confirm('Bạn chắc chắn muốn xóa?')"><i class="fas fa-trash-alt"></i></a>
+                        <a href="{{route('product.edit',$product->id)}}" class="btn btn-outline-warning"
+                           id="update-product"><i class="far fa-edit"></i></a>
                     </td>
                 </tr>
-                @endforeach
-                </tbody>
-            </table>
-            {{ $products->links() }}
-        </div>
+
+            @endforeach
+            </tbody>
+        </table>
+        {{ $products->links() }}
     </div>
 </div>
+
+
+
+
+<script type="text/javascript">
+    $('#master').on('click', function (e) {
+        if ($(this).is(':checked', true)) {
+            $(".delete").prop('checked', true);
+        } else {
+            $(".delete").prop('checked', false);
+        }
+    });
+    $('.delete_all').on('click', function (e) {
+        var allVals = [];
+        $(".delete:checked").each(function () {
+            allVals.push($(this).attr('data-id'));
+        });
+        if (allVals.length <= 0) {
+            alert("Vui lòng chọn sản phẩm cần xóa.");
+        } else {
+            var join_selected_values = allVals.join(",");
+            $.ajax({
+                url: $(this).data('url'),
+                type: 'DELETE',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: 'ids=' + join_selected_values,
+                success: function (data) {
+                    $(".delete:checked").each(function () {
+                        $(this).parents("tr").remove();
+                    });
+                },
+                error: function (data) {
+                    alert(data.responseText);
+                }
+            });
+            $.each(allVals, function (index, value) {
+                $('table tr').filter("[data-row-id='" + value + "']").remove();
+            });
+        }
+    });
+    $('[data-toggle=confirmation]').confirmation({
+        rootSelector: '[data-toggle=confirmation]',
+        onConfirm: function (event, element) {
+            element.trigger('confirm');
+        }
+    });
+    $(document).on('confirm', function (e) {
+        var ele = e.target;
+        e.preventDefault();
+        $.ajax({
+            url: ele.href,
+            type: 'DELETE',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            success: function (data) {
+                if (data['success']) {
+                    $("#" + data['tr']).slideUp("slow");
+                    alert(data['success']);
+                } else if (data['error']) {
+                    alert(data['error']);
+                } else {
+                    alert('Rất tiếc, đã xảy ra lỗi!!');
+                }
+            },
+            error: function (data) {
+                alert(data.responseText);
+            }
+        });
+        return false;
+    });
+</script>
 @endsection
 </body>
 </html>
-

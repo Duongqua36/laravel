@@ -11,8 +11,6 @@
             </ol>
         </div>
 
-
-
 {{--    <?php--}}
 {{--    function showCategories($categories, $parent_id = '', $char = 0)--}}
 {{--    {--}}
